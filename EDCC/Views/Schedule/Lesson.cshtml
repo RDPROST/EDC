@@ -1,0 +1,43 @@
+@model Lesson
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <h1>@Model.Subject.Name</h1>
+    <hr>
+    <p><b>Date:</b> @Model.Date.ToString("MM.dd.yyyy")</p>
+    <p><b>Who passes:</b> @Model.Group.Name </p>
+    <p>
+        <b>Time:</b>
+        @switch (@Model.TimeSlot)
+        {
+            case 1:
+                <text>8:30 - 10:05</text>
+                break;
+            case 2:
+                <text>10:15 - 11:50</text>
+                break;
+            case 3:
+                <text>12:30 - 14:05</text>
+                break;
+            case 4:
+                <text>14:15 - 15:50</text>
+                break;
+            default:
+                <text>>15:50</text>
+                break;
+        }
+    </p>
+    <p><b>Teacher:</b> @Model.User.UserName</p>
+    @if (Model.File != null)
+    {
+        <p><b>File:</b> <a href="/uploads/@Model.File.Name" download class="btn btn-primary">Download @Model.File.Name</a></p>
+    }
+    
+    @if (ViewData["Mark"] != null)
+    {
+        <p><b>Mark: </b> @ViewData["Mark"]</p>
+    }
+</div>
