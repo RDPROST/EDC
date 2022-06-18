@@ -70,6 +70,12 @@ namespace EDCC.Controllers
             
             if (!ModelState.IsValid)
             {
+                var TimeSlotT = _context.Lessons.Where(x => x.TimeSlot == lesson.TimeSlot && x.Date == lesson.Date && x.GroupId == lesson.GroupId);
+                if (TimeSlotT.Count() > 0)
+                {
+                    TempData["ErrorMessage"] = "Такое время уже занято";
+                    return RedirectToAction(nameof(Index));
+                }
                 if (file != null)
                 {
                     var uploads = Path.Combine(_hostingEnvironment.WebRootPath, "uploads");

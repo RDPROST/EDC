@@ -12,6 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="Fingers10.ExcelExport" Version="3.0.1" />
         <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.5" />
         <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.5" />
         <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.5" />
@@ -19,11 +20,8 @@
         <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.5" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.5" />
         <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.5" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Pages" />
-      <Folder Include="wwwroot\uploads" />
+        <PackageReference Include="Selenium.Chrome.WebDriver" Version="85.0.0" />
+        <PackageReference Include="Selenium.WebDriver" Version="4.2.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -50,6 +48,10 @@
       <UpToDateCheckInput Remove="Views\Student\Details.cshtml" />
       <UpToDateCheckInput Remove="Views\Student\Edit.cshtml" />
       <UpToDateCheckInput Remove="Views\Student\Index.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Pages" />
     </ItemGroup>
 
 </Project>

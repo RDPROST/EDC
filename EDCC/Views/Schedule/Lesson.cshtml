@@ -7,10 +7,10 @@
 <div class="row">
     <h1>@Model.Subject.Name</h1>
     <hr>
-    <p><b>Date:</b> @Model.Date.ToString("MM.dd.yyyy")</p>
-    <p><b>Who passes:</b> @Model.Group.Name </p>
+    <p><b>Дата:</b> @Model.Date.ToString("MM.dd.yyyy")</p>
+    <p><b>Кто проходит:</b> @Model.Group.Name </p>
     <p>
-        <b>Time:</b>
+        <b>Время проведения:</b>
         @switch (@Model.TimeSlot)
         {
             case 1:
@@ -30,10 +30,14 @@
                 break;
         }
     </p>
-    <p><b>Teacher:</b> @Model.User.UserName</p>
+    <p><b>Преподаватель:</b> @Model.User.UserName</p>
     @if (Model.File != null)
     {
-        <p><b>File:</b> <a href="/uploads/@Model.File.Name" download class="btn btn-primary">Download @Model.File.Name</a></p>
+        <p><b>File:</b> <a href="/uploads/@Model.File.Name" download class="btn btn-primary">Скачать @Model.File.Name</a></p>
+    }
+    else
+    {
+        <p><a href="/uploads/IT.xlsx" download class="btn btn-primary">Скачать</a></p>
     }
     
     @if (ViewData["Mark"] != null)

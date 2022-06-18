@@ -5,35 +5,33 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
-
-<h4>Mark</h4>
+<h1>Добавить оценку</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="MarkStudent" class="control-label"></label>
+                <label asp-for="MarkStudent" class="control-label">Оценка</label>
                 <input asp-for="MarkStudent" class="form-control" />
                 <span asp-validation-for="MarkStudent" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LessonId" class="control-label"></label>
+                <label asp-for="LessonId" class="control-label">Урок</label>
                 <select asp-for="LessonId" class ="form-control" asp-items="ViewBag.LessonId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
+                <label asp-for="UserId" class="control-label">Ученик</label>
                 <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Добавить" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Вернуться назад</a>
 </div>
 

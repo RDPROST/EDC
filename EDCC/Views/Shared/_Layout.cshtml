@@ -10,6 +10,7 @@
     <title>@ViewData["Title"] - EDCC</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
     <link rel="stylesheet" href="~/EDCC.styles.css" asp-append-version="true"/>
 </head>
 <body>
@@ -24,27 +25,52 @@
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
                     </li>
                     @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                     {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Group" asp-action="Index">Groups</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Group" asp-action="Index">Группы</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Student" asp-action="Index">Students</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Student" asp-action="Index">Студенты</a>
+                        </li>
+                    }
+                    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Teacher") || User.IsInRole("Admin")))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Lesson" asp-action="Index">Лекции</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Lesson" asp-action="Index">Lessons</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Mark" asp-action="Index">Оценки</a>
                         </li>
                     }
 
-                    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Student") || User.IsInRole("Admin")))
+                    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
                     {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Schedule" asp-action="Index">Schedule</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Schedule" asp-action="Index">Расписание</a>
                         </li>
                     }
+                    
+                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Student"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Schedule" asp-action="Update">Расписание</a>
+                        </li>
+                    }
+                    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Export" asp-action="Index">Экспорт</a>
+                        </li>
+                    }
+                    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
+                                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link text-dark" asp-area="" asp-controller="Practice" asp-action="Index">Практика</a>
+                                            </li>
+                                        }
                 </ul>
                 
                 <partial name="_LoginPartial"/>

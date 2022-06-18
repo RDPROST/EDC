@@ -15,32 +15,32 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id"/>
             <div class="form-group">
-                <label asp-for="TimeSlot" class="control-label"></label>
+                <label asp-for="TimeSlot" class="control-label">Номер пары</label>
                 <input asp-for="TimeSlot" class="form-control"/>
                 <span asp-validation-for="TimeSlot" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
+                <label asp-for="Date" class="control-label">Дата</label>
                 <input asp-for="Date" class="form-control"/>
                 <span asp-validation-for="Date" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="GroupId" class="control-label"></label>
+                <label asp-for="GroupId" class="control-label">Группа</label>
                 <select asp-for="GroupId" class="form-control" asp-items="ViewBag.GroupId"></select>
                 <span asp-validation-for="GroupId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
+                <label asp-for="UserId" class="control-label">Учитель</label>
                 <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
                 <span asp-validation-for="UserId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SubjectId" class="control-label"></label>
+                <label asp-for="SubjectId" class="control-label">Предмет</label>
                 <select asp-for="SubjectId" class="form-control" asp-items="ViewBag.SubjectId"></select>
                 <span asp-validation-for="SubjectId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary"/>
+                <input type="submit" value="Сохранить" class="btn btn-primary"/>
             </div>
         </form>
     </div>
