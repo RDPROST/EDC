@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ku3wRgpwEw+10gBnrTRibiOnkFs6pB5eNrWN9ZrjObs=",
+  "Hash": "+F1/QPmqnniTwsqhXWIdS1uJhR/3uUSrgr6DVjphJfY=",
   "Source": "EDCC",
   "BasePath": "_content/EDCC",
   "Mode": "Default",
@@ -2089,6 +2089,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/lib/jquery/LICENSE.txt"
+    },
+    {
+      "Identity": "/Users/nikitadovgan/Documents/GitHub/EDC/EDCC/wwwroot/uploads/232_Dnevnik_PP_04_02.docx",
+      "SourceId": "EDCC",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/nikitadovgan/Documents/GitHub/EDC/EDCC/wwwroot/",
+      "BasePath": "_content/EDCC",
+      "RelativePath": "uploads/232_Dnevnik_PP_04_02.docx",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/232_Dnevnik_PP_04_02.docx"
     },
     {
       "Identity": "/Users/nikitadovgan/Documents/GitHub/EDC/EDCC/wwwroot/uploads/check.png",

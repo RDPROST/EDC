@@ -1,41 +1,41 @@
 @model IEnumerable<EDCC.Models.Lesson>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Лекции";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Уроки</h1>
+<h1>Лекции</h1>
 
 
 <a asp-action="Create">Создать</a>
 @if (TempData["ErrorMessage"] as string != "")
 {
-    <h5 class="text-red">Ошибка: @TempData["ErrorMessage"]</h5>
+    <h5 class="text-red">@TempData["ErrorMessage"]</h5>
 }
 <table class="table">
     <thead>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Id)
+            Id
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TimeSlot)
+            Номер пары
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Date)
+            Дата проведения
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Group)
+            Группа
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.User)
+            Преподаватель
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Subject)
+            Предмет
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.File)
+            Файл
         </th>
         <th></th>
     </tr>
