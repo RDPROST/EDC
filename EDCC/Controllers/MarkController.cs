@@ -49,8 +49,8 @@ namespace EDCC.Controllers
         // GET: Mark/Create
         public IActionResult Create()
         {
-            ViewData["LessonId"] = new SelectList(_context.Lessons, "Id", "UserId");
-            ViewData["UserId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Id");
+            ViewData["LessonId"] = new SelectList(_context.Lessons, "Id", "Id");
+            ViewData["UserId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "UserName");
             return View();
         }
 

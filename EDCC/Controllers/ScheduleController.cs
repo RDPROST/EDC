@@ -96,9 +96,34 @@ namespace EDCC.Controllers
                 }
                 objLessons.Sort(arrSortTimeSlot);
                 objLessons.Sort(arrSortDate);
+                string dayWeek = "";
+                switch (firstDay.AddDays(i).DayOfWeek.ToString())
+                {
+                    case "Monday":
+                        dayWeek = "Понедельник";
+                        break;
+                    case "Tuesday":
+                        dayWeek = "Вторник";
+                        break;
+                    case "Wednesday":
+                        dayWeek = "Среда";
+                        break;
+                    case "Thursday":
+                        dayWeek = "Четверг";
+                        break;
+                    case "Friday":
+                        dayWeek = "Пятница";
+                        break;
+                    case "Saturday":
+                        dayWeek = "Суббота";
+                        break;
+                    case "Sunday":
+                        dayWeek = "Воскресенье";
+                        break;
+                }
                 var obj = new ScheduleFill()
                 {
-                    Name = firstDay.AddDays(i).DayOfWeek.ToString(),
+                    Name = dayWeek,
                     Lessons = objLessons
                 };
                 applicationDbContext.Add(obj);

@@ -1,10 +1,10 @@
 @model List<EDCC.Fill.ScheduleFill>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Расписание";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Schedule</h1>
+<h1>Расписание</h1>
 <div class="row">
     @foreach (var item in Model)
     {
@@ -48,7 +48,7 @@
                     @if (item.Lessons.Count == 0)
                     {
                         <li class="list-group-item">
-                            <h5>No classes</h5>
+                            <h5>Нет занятий</h5>
                         </li>
                     }
                 </ul>

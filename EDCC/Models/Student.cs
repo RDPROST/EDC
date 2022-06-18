@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Fingers10.ExcelExport.Attributes;
 using Microsoft.AspNetCore.Identity;
 
 namespace EDCC.Models;
@@ -7,9 +8,11 @@ namespace EDCC.Models;
 public class Student
 {
    [Key]
+   [IncludeInReport(Order = 1)]
    public int Id { get; set; }
    
    [Required]
+   [IncludeInReport(Order = 2)]
    public int Age { get; set; }
 
    public enum Sex
@@ -19,9 +22,11 @@ public class Student
    }
    
    [Required]
+   [IncludeInReport(Order = 3)]
    public DateTime BirthDay { get; set; }
    
    [Required]
+   [IncludeInReport(Order = 4)]
    public DateTime StartTraining { get; set; }
    
    [Required]
@@ -31,6 +36,7 @@ public class Student
    public virtual ApplicationUser User { get; set; }
    
    [Required]
+   [IncludeInReport(Order = 5)]
    [ForeignKey("Groups")]
    public int GroupId { get; set; }
    

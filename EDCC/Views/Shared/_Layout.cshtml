@@ -24,25 +24,37 @@
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
                     </li>
                     @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                     {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Group" asp-action="Index">Groups</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Group" asp-action="Index">Группы</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Student" asp-action="Index">Students</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Student" asp-action="Index">Студенты</a>
+                        </li>
+                    }
+                    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Teacher") || User.IsInRole("Admin")))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Lesson" asp-action="Index">Уроки</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Lesson" asp-action="Index">Lessons</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Mark" asp-action="Index">Оценки</a>
                         </li>
                     }
 
                     @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Student") || User.IsInRole("Admin")))
                     {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Schedule" asp-action="Index">Schedule</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Schedule" asp-action="Index">Расписание</a>
+                        </li>
+                    }
+                    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Export" asp-action="Index">Экспорт</a>
                         </li>
                     }
                 </ul>
