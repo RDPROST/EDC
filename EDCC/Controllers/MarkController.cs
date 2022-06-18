@@ -22,7 +22,7 @@ namespace EDCC.Controllers
         // GET: Mark
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Marks.Include(m => m.Lesson).Include(m => m.User);
+            var applicationDbContext = _context.Marks.Include(m => m.Lesson).Include(m => m.User).Include(v => v.Lesson.Subject);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -61,7 +61,7 @@ namespace EDCC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,MarkStudent,LessonId,UserId")] Mark mark)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _context.Add(mark);
                 await _context.SaveChangesAsync();

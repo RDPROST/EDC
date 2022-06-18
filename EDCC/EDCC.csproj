@@ -20,11 +20,12 @@
         <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.5" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.5" />
         <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.5" />
+        <PackageReference Include="Selenium.Chrome.WebDriver" Version="85.0.0" />
+        <PackageReference Include="Selenium.WebDriver" Version="4.2.0" />
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="Pages" />
-      <Folder Include="wwwroot\uploads" />
     </ItemGroup>
 
     <ItemGroup>

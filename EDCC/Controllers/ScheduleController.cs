@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using EDCC.Data;
 using EDCC.Fill;
@@ -9,6 +10,8 @@ using EDCC.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 
 namespace EDCC.Controllers
 {
@@ -62,38 +65,130 @@ namespace EDCC.Controllers
             }
         }
         
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
-            var user = await _userManager.GetUserAsync(User);
+            var arrRes = new List<Lesson>();
             var cal = new GregorianCalendar();
             var weekNumber = cal.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFullWeek, DayOfWeek.Monday);
             var firstDay = GetFirstDateOfWeek(weekNumber);
             var lastDay = GetFirstDateOfWeek(weekNumber).AddDays(6);
+            List<ScheduleFill> applicationDbContext = new List<ScheduleFill>();
+            if (id == 1)
+            {
+                var user = await _userManager.GetUserAsync(User);
+            
             var group = await _context.Students
                 .Where(u => u.UserId == user.Id)
                 .ToListAsync();
             if (group.Count <= 0)
             {
-                return NotFound();
+                var teacher = await _context.Users
+                    .Where(u => u.Id == user.Id)
+                    .ToListAsync();
+                
             }
-            var arrRes = await _context.Lessons
+            arrRes = await _context.Lessons
                 .Where(g => g.GroupId == group[0].GroupId)
                 .Include(s=> s.Subject)
                 .Include(l => l.User)
                 .Include(f=> f.File)
                 .ToListAsync();
-            List<ScheduleFill> applicationDbContext = new List<ScheduleFill>();
+            
 
+           
+            }
             for (int i = 0; i < 7; i++)
             {
                 List<Lesson> objLessons = new List<Lesson>();
-                foreach (var item in arrRes)
+                if (arrRes.Count > 0)
                 {
-                    if (item.Date == firstDay.AddDays(i))
+                    foreach (var item in arrRes)
                     {
-                        objLessons.Add(item);
+                        if (item.Date == firstDay.AddDays(i))
+                        {
+                            objLessons.Add(item);
+                        }
                     }
                 }
+                
+                objLessons.Sort(arrSortTimeSlot);
+                objLessons.Sort(arrSortDate);
+                string dayWeek = "";
+                switch (firstDay.AddDays(i).DayOfWeek.ToString())
+                {
+                    case "Monday":
+                        dayWeek = "Понедельник";
+                        break;
+                    case "Tuesday":
+                        dayWeek = "Вторник";
+                        break;
+                    case "Wednesday":
+                        dayWeek = "Среда";
+                        break;
+                    case "Thursday":
+                        dayWeek = "Четверг";
+                        break;
+                    case "Friday":
+                        dayWeek = "Пятница";
+                        break;
+                    case "Saturday":
+                        dayWeek = "Суббота";
+                        break;
+                    case "Sunday":
+                        dayWeek = "Воскресенье";
+                        break;
+                }
+                var obj = new ScheduleFill()
+                {
+                    Name = dayWeek,
+                    Lessons = objLessons
+                };
+                applicationDbContext.Add(obj);
+            }
+            return View(applicationDbContext);
+        }
+        
+        public async Task<IActionResult> Update()
+        {
+            var arrRes = new List<Lesson>();
+            var cal = new GregorianCalendar();
+            var weekNumber = cal.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFullWeek, DayOfWeek.Monday);
+            var firstDay = GetFirstDateOfWeek(weekNumber);
+            var lastDay = GetFirstDateOfWeek(weekNumber).AddDays(6);
+            List<ScheduleFill> applicationDbContext = new List<ScheduleFill>();
+                var user = await _userManager.GetUserAsync(User);
+            
+            var group = await _context.Students
+                .Where(u => u.UserId == user.Id)
+                .ToListAsync();
+            if (group.Count <= 0)
+            {
+                var teacher = await _context.Users
+                    .Where(u => u.Id == user.Id)
+                    .ToListAsync();
+                
+            }
+            arrRes = await _context.Lessons
+                .Where(g => g.GroupId == group[0].GroupId)
+                .Include(s=> s.Subject)
+                .Include(l => l.User)
+                .Include(f=> f.File)
+                .ToListAsync();
+            
+            for (int i = 0; i < 7; i++)
+            {
+                List<Lesson> objLessons = new List<Lesson>();
+                if (arrRes.Count > 0)
+                {
+                    foreach (var item in arrRes)
+                    {
+                        if (item.Date == firstDay.AddDays(i))
+                        {
+                            objLessons.Add(item);
+                        }
+                    }
+                }
+                
                 objLessons.Sort(arrSortTimeSlot);
                 objLessons.Sort(arrSortDate);
                 string dayWeek = "";

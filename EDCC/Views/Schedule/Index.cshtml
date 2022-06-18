@@ -1,4 +1,8 @@
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model List<EDCC.Fill.ScheduleFill>
+
+@inject SignInManager<IdentityUser> SignInManager
 @{
     ViewData["Title"] = "Расписание";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,6 +10,18 @@
 
 <h1>Расписание</h1>
 <div class="row">
+    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Teacher") || User.IsInRole("Manager") || User.IsInRole("Admin")))
+    {
+        <div class="col-6 mb-3">
+            <input class="form-control mb-3" type="file" id="formFile" accept=".xlsx,.xls">
+        </div>
+        <div class="col-6">
+            <a class="btn btn-primary" asp-area="" asp-controller="Schedule" asp-action="Update">Обновить</a>
+        </div>
+        
+    }
+</div>
+<div id="lesson" class="row">
     @foreach (var item in Model)
     {
         <div class="col-4 mb-3">

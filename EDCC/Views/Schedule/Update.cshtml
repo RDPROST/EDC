@@ -1,0 +1,97 @@
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model List<EDCC.Fill.ScheduleFill>
+
+@inject SignInManager<IdentityUser> SignInManager
+@{
+    ViewData["Title"] = "Расписание";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Расписание</h1>
+<div class="row">
+    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Teacher") || User.IsInRole("Manager") || User.IsInRole("Admin")))
+    {
+        <div class="col mb-3">
+            <a class="btn btn-primary" download href="/uploads/IT.xlsx">Скачать Excel</a>
+        </div>
+        
+    }
+    
+    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Student"))
+    {
+        <div class="col mb-3">
+            <a href="#" class="btn btn-primary" onclick="takeshot()" id="screen">Сохранить</a>
+        </div>
+    }
+</div>
+<div class="row" id="lesson">
+    @foreach (var item in Model)
+    {
+        <div class="col-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h3>
+                </div>
+                <ul class="list-group list-group-flush">
+                    @foreach (var elem in item.Lessons)
+                    {
+                        <li class="list-group-item">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <a asp-action="Lesson" asp-route-id="@elem.Id">@elem.Subject.Name</a>
+                                    <p>@elem.User.UserName</p>
+                                </div>
+                                <p>
+                                    @switch (elem.TimeSlot)
+                                    {
+                                        case 1:
+                                            <text>8:30 - 10:05</text>
+                                            break;
+                                        case 2:
+                                            <text>10:15 - 11:50</text>
+                                            break;
+                                        case 3:
+                                            <text>12:30 - 14:05</text>
+                                            break;
+                                        case 4:
+                                            <text>14:15 - 15:50</text>
+                                            break;
+                                        default:
+                                            <text>>15:50</text>
+                                            break;
+                                    }
+                                </p>
+                            </div>
+                        </li>
+                    }
+                    @if (item.Lessons.Count == 0)
+                    {
+                        <li class="list-group-item">
+                            <h5>Нет занятий</h5>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+</div>
+<div id="output" style=""></div>
+<script >
+function takeshot() {
+            let div =
+                document.getElementById('lesson');
+  
+            html2canvas(div).then(
+                function (canvas) {
+                    document
+                    .getElementById('output')
+                    .appendChild(canvas);
+                })
+            let blob = document.querySelector('#output canvas').toDataURL("image/png");
+            let link = document.querySelector("#screen");
+            link.href = blob;
+            link.download = "test.png";
+            document.querySelector('#output').style.display = "none"
+        }
+</script>

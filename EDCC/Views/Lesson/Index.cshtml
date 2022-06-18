@@ -7,9 +7,12 @@
 
 <h1>Уроки</h1>
 
-<p>
-    <a asp-action="Create">Создать</a>
-</p>
+
+<a asp-action="Create">Создать</a>
+@if (TempData["ErrorMessage"] as string != "")
+{
+    <h5 class="text-red">Ошибка: @TempData["ErrorMessage"]</h5>
+}
 <table class="table">
     <thead>
     <tr>
