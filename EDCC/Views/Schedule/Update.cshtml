@@ -9,7 +9,7 @@
 }
 <h1>Расписание</h1>
 <div class="row">
-    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Teacher") || User.IsInRole("Manager") || User.IsInRole("Admin")))
+    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Teacher") || User.IsInRole("Admin")))
     {
         <div class="col mb-3">
             <a class="btn btn-primary" download href="/uploads/IT.xlsx">Скачать Excel</a>
@@ -25,60 +25,68 @@
     }
      @if (SignInManager.IsSignedIn(User) && User.IsInRole("Manager"))
      {
-	     <iframe src="table/excel.htm" frameborder="0"></iframe>
+	     <style>
+		     iframe{
+		     	height: 100vh;
+		     }
+	     </style>
+	     <iframe src="https://localhost:7075/table/excel.html" frameborder="0"></iframe>
      }
 </div>
-<div class="row" id="lesson">
-	@foreach (var item in Model)
-	{
-		<div class="col-4 mb-3">
-			<div class="card">
-				<div class="card-body">
-					<h3 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h3>
-				</div>
-				<ul class="list-group list-group-flush">
-					@foreach (var elem in item.Lessons)
-					{
-						<li class="list-group-item">
-							<div class="d-flex justify-content-between">
-								<div>
-									<a asp-action="Lesson" asp-route-id="@elem.Id">@elem.Subject.Name</a>
-									<p>@elem.User.UserName</p>
-								</div>
-								<p>
-									@switch (elem.TimeSlot)
-									{
-										case 1:
-											<text>8:30 - 10:05</text>
-											break;
-										case 2:
-											<text>10:15 - 11:50</text>
-											break;
-										case 3:
-											<text>12:30 - 14:05</text>
-											break;
-										case 4:
-											<text>14:15 - 15:50</text>
-											break;
-										default:
-											<text>>15:50</text>
-											break;
-									}
-								</p>
-							</div>
-						</li>
-					}
-					@if (item.Lessons.Count == 0)
-					{
-						<li class="list-group-item">
-							<h5>Нет занятий</h5>
-						</li>
-					}
-				</ul>
-			</div>
-		</div>
-	}
-</div>
+@if (!User.IsInRole("Manager"))
+{
+    <div class="row" id="lesson">
+    	@foreach (var item in Model)
+    	{
+    		<div class="col-4 mb-3">
+    			<div class="card">
+    				<div class="card-body">
+    					<h3 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h3>
+    				</div>
+    				<ul class="list-group list-group-flush">
+    					@foreach (var elem in item.Lessons)
+    					{
+    						<li class="list-group-item">
+    							<div class="d-flex justify-content-between">
+    								<div>
+    									<a asp-action="Lesson" asp-route-id="@elem.Id">@elem.Subject.Name</a>
+    									<p>@elem.User.UserName</p>
+    								</div>
+    								<p>
+    									@switch (elem.TimeSlot)
+    									{
+    										case 1:
+    											<text>8:30 - 10:05</text>
+    											break;
+    										case 2:
+    											<text>10:15 - 11:50</text>
+    											break;
+    										case 3:
+    											<text>12:30 - 14:05</text>
+    											break;
+    										case 4:
+    											<text>14:15 - 15:50</text>
+    											break;
+    										default:
+    											<text>>15:50</text>
+    											break;
+    									}
+    								</p>
+    							</div>
+    						</li>
+    					}
+    					@if (item.Lessons.Count == 0)
+    					{
+    						<li class="list-group-item">
+    							<h5>Нет занятий</h5>
+    						</li>
+    					}
+    				</ul>
+    			</div>
+    		</div>
+    	}
+    </div>
+}
 <div id="output" style=""></div>
 <script >
 function takeshot() {

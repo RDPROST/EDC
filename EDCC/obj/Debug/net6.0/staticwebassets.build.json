@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+F1/QPmqnniTwsqhXWIdS1uJhR/3uUSrgr6DVjphJfY=",
+  "Hash": "nL6VMBSvU0nJivTRItXj4CC2vv8dvon74mW2M07+w2A=",
   "Source": "EDCC",
   "BasePath": "_content/EDCC",
   "Mode": "Default",
@@ -1071,6 +1071,23 @@
       "OriginalItemSpec": "/Users/nikitadovgan/Documents/GitHub/EDC/EDCC/obj/Debug/net6.0/scopedcss/projectbundle/EDCC.bundle.scp.css"
     },
     {
+      "Identity": "/Users/nikitadovgan/Documents/GitHub/EDC/EDCC/wwwroot/.DS_Store",
+      "SourceId": "EDCC",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/nikitadovgan/Documents/GitHub/EDC/EDCC/wwwroot/",
+      "BasePath": "_content/EDCC",
+      "RelativePath": ".DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/.DS_Store"
+    },
+    {
       "Identity": "/Users/nikitadovgan/Documents/GitHub/EDC/EDCC/wwwroot/css/site.css",
       "SourceId": "EDCC",
       "SourceType": "Discovered",
@@ -2089,6 +2106,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/lib/jquery/LICENSE.txt"
+    },
+    {
+      "Identity": "/Users/nikitadovgan/Documents/GitHub/EDC/EDCC/wwwroot/table/.DS_Store",
+      "SourceId": "EDCC",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/nikitadovgan/Documents/GitHub/EDC/EDCC/wwwroot/",
+      "BasePath": "_content/EDCC",
+      "RelativePath": "table/.DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/table/.DS_Store"
+    },
+    {
+      "Identity": "/Users/nikitadovgan/Documents/GitHub/EDC/EDCC/wwwroot/table/excel.html",
+      "SourceId": "EDCC",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/nikitadovgan/Documents/GitHub/EDC/EDCC/wwwroot/",
+      "BasePath": "_content/EDCC",
+      "RelativePath": "table/excel.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/table/excel.html"
     },
     {
       "Identity": "/Users/nikitadovgan/Documents/GitHub/EDC/EDCC/wwwroot/uploads/232_Dnevnik_PP_04_02.docx",
